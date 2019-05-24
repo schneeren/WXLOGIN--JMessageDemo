@@ -18,18 +18,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djb-i4-Eqn">
-                                <rect key="frame" x="82" y="183" width="62" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="微信登录"/>
-                                <connections>
-                                    <action selector="WXLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vCM-Jw-LKd"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-6H-8oj">
-                                <rect key="frame" x="52" y="276" width="123" height="30"/>
+                                <rect key="frame" x="59" y="314" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="获取单独聊天信息"/>
+                                <state key="normal" title="跳转第一个群组"/>
                                 <connections>
                                     <action selector="gotoChat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pMe-wU-nvf"/>
                                 </connections>
@@ -39,7 +31,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byi-xs-EUS">
-                                <rect key="frame" x="210" y="183" width="184" height="30"/>
+                                <rect key="frame" x="22" y="210" width="184" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="所有未读消息以及所有会话"/>
                                 <connections>
@@ -47,11 +39,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1y-4K-qkM">
-                                <rect key="frame" x="186" y="402" width="123" height="30"/>
+                                <rect key="frame" x="53" y="262" width="123" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="跳转第一个聊天室"/>
                                 <connections>
                                     <action selector="jumpChatRoom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bNf-Mz-zrx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djb-i4-Eqn">
+                                <rect key="frame" x="83" y="150" width="62" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="微信登录"/>
+                                <connections>
+                                    <action selector="WXLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vCM-Jw-LKd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -66,6 +66,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-664" y="-192"/>
+        </scene>
+        <!--ListVC-->
+        <scene sceneID="bsg-aS-fQw">
+            <objects>
+                <viewController storyboardIdentifier="ListVC" id="Byj-eH-ke7" customClass="ListVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gCB-NR-8rB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Oox-yN-GR0">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Byj-eH-ke7" id="gqY-UL-EvG"/>
+                                    <outlet property="delegate" destination="Byj-eH-ke7" id="UjM-I3-ra2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Oox-yN-GR0" firstAttribute="top" secondItem="xtr-23-4hi" secondAttribute="top" id="YJv-VQ-I3m"/>
+                            <constraint firstItem="xtr-23-4hi" firstAttribute="trailing" secondItem="Oox-yN-GR0" secondAttribute="trailing" id="h8L-AZ-10h"/>
+                            <constraint firstItem="xtr-23-4hi" firstAttribute="bottom" secondItem="Oox-yN-GR0" secondAttribute="bottom" id="skS-TQ-ZOf"/>
+                            <constraint firstItem="Oox-yN-GR0" firstAttribute="leading" secondItem="xtr-23-4hi" secondAttribute="leading" id="tcF-Lc-TB2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xtr-23-4hi"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Oox-yN-GR0" id="Dvh-wR-2Pg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gTl-Eq-VNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="168" y="22"/>
         </scene>
         <!--Chat RoomVC-->
         <scene sceneID="t33-hP-7Fz">
@@ -138,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nff-x4-asP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.78260869565219" y="55.580357142857139"/>
+            <point key="canvasLocation" x="967" y="1"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3wI-BQ-tnt">
@@ -156,7 +190,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VkI-qa-6fe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.78260869565219" y="-655.58035714285711"/>
+            <point key="canvasLocation" x="414" y="-731"/>
         </scene>
     </scenes>
 </document>

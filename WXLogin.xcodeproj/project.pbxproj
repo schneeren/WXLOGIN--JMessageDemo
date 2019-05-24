@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C0C0A3ACCEA52672DD9E4E2 /* libPods-WXLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F918BB586ACBBF6B393B8D /* libPods-WXLogin.a */; };
+		97302E852297BB98003F1261 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97302E842297BB98003F1261 /* ListVC.m */; };
 		977BF3E222968BD100E7F1B3 /* IMMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 977BF3E122968BD100E7F1B3 /* IMMessageManager.m */; };
 		9791A84F2295243400939AB9 /* ChatRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9791A84E2295243400939AB9 /* ChatRoomVC.m */; };
 		9791A8522295252E00939AB9 /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9791A8512295252E00939AB9 /* ChatMessageModel.m */; };
@@ -44,6 +45,8 @@
 		2FF5DAB00CAEBF83CFA2A139 /* Pods-WXLoginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXLoginTests.release.xcconfig"; path = "Target Support Files/Pods-WXLoginTests/Pods-WXLoginTests.release.xcconfig"; sourceTree = "<group>"; };
 		4EF3633D2188062B18AAB515 /* libPods-WXLoginUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WXLoginUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95ECD2F664871BA38E5557D4 /* Pods-WXLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXLogin.release.xcconfig"; path = "Target Support Files/Pods-WXLogin/Pods-WXLogin.release.xcconfig"; sourceTree = "<group>"; };
+		97302E832297BB98003F1261 /* ListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
+		97302E842297BB98003F1261 /* ListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
 		977BF3E022968BD100E7F1B3 /* IMMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMMessageManager.h; sourceTree = "<group>"; };
 		977BF3E122968BD100E7F1B3 /* IMMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMMessageManager.m; sourceTree = "<group>"; };
 		9791A84D2295243400939AB9 /* ChatRoomVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomVC.h; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				97AB47472293CFE1004BA119 /* JMSGFocusIMDelete.m */,
 				97A6660322923D1400C07E1B /* ViewController.h */,
 				97A6660422923D1400C07E1B /* ViewController.m */,
+				97302E832297BB98003F1261 /* ListVC.h */,
+				97302E842297BB98003F1261 /* ListVC.m */,
 				97AB47442293CBC1004BA119 /* CCHttpTool.h */,
 				97AB47432293CBC0004BA119 /* CCHttpTool.m */,
 				9791A8532295253D00939AB9 /* ChatRoomManager.h */,
@@ -312,6 +317,7 @@
 				9791A8552295253D00939AB9 /* ChatRoomManager.m in Sources */,
 				97AB47452293CBC1004BA119 /* CCHttpTool.m in Sources */,
 				9791A8522295252E00939AB9 /* ChatMessageModel.m in Sources */,
+				97302E852297BB98003F1261 /* ListVC.m in Sources */,
 				9791A84F2295243400939AB9 /* ChatRoomVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

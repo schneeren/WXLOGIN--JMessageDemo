@@ -34,9 +34,19 @@
     JMSGTextContent *content = [[JMSGTextContent alloc]initWithText:message];
     JMSGMessage *messageModel =  [self.JMSG createMessageWithContent:content];
     ChatMessageModel *model  = [ChatMessageModel initWithJMSGMessage:messageModel];
-    model.messageStatus = isSendType;
+    model.messageStatus = MessageStatusIsSendStatus;
     [_sendMessageArray addObject:model];
     [self.JMSG sendMessage:messageModel];
+    return model;
+}
+-(ChatMessageModel *)sendImageMessage:(UIImage *)image{
+//    NSString *base64 = [NSString ]
+    NSData *data = [image imageDataRepresentation];
+    JMSGImageContent *content = [[JMSGImageContent alloc]initWithImageData:data];
+    JMSGMessage *messageModel =  [self.JMSG createMessageWithContent:content];
+    
+    ChatMessageModel *model = [ChatMessageModel initWithJMSGMessage:messageModel];
+    
     return model;
 }
 //发送消息回调
@@ -46,9 +56,9 @@
          ChatMessageModel *model = (ChatMessageModel*)message;
         if (error) {
            
-            model.messageStatus = haveSendFailedType;
+            model.messageStatus = MessageStatusHaveSendFailedStatus;
         }else{
-            model.messageStatus = haveSendSuccessedType;
+            model.messageStatus = MessageStatusHaveSendSuccessedStatus;
         }
     }
 }
@@ -57,11 +67,35 @@
     
     if (!error) {
         ChatMessageModel *model = [ChatMessageModel initWithJMSGMessage:message];
-        if (model&&self.receiveMessage) {
-            self.receiveMessage(model);
+        if (!model) {
+            return;
+        }
+        switch (message.contentType) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                if (self.receiveMessage) {
+                    self.receiveMessage(model);
+                }
+                break;
+            case 5:
+                //通知事件
+                if (self.receiveEventMessage) {
+                    self.receiveEventMessage(model);
+                }
+                break;
+            default:
+                break;
         }
         
+
+        
     }
+    
+}
+-(void)onGroupInfoChanged:(JMSGGroup *)group{
+    
     
 }
 @end

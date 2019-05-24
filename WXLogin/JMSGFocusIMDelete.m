@@ -9,7 +9,7 @@
 #import "JMSGFocusIMDelete.h"
 #import "AppDelegate.h"
 #import <JMessage/JMessage.h>
-
+#import "ChatMessageModel.h"
 @interface JMSGFocusIMDelete ()<JMessageDelegate>{
     UIAlertView *alertView;
     UIAlertView *loginAlertView;
@@ -57,6 +57,8 @@ static JMSGFocusIMDelete *instance = nil;
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     delegate.isDBMigrating = NO;
 }
+
+
 -(void)onReceiveMessage:(JMSGMessage *)message error:(NSError *)error{
 //    message.contentType;
 ////    /// 文本消息
@@ -65,67 +67,30 @@ static JMSGFocusIMDelete *instance = nil;
 ////    kJMSGContentTypeImage = 2,
 ////    /// 语音消息
 ////    kJMSGContentTypeVoice = 3,
-    
+   
     [self makeMessage:message];
     
 }
+//离线消息
+- (void)onSyncOfflineMessageConversation:(JMSGConversation *)conversation offlineMessages:(NSArray<__kindof JMSGMessage *> *)offlineMessages{
+    NSLog(@"离线消息-----%@",offlineMessages);
+    for (JMSGMessage *message in offlineMessages) {
+        [self makeMessage:message];
+    }
+}
 -(void)makeMessage:(JMSGMessage *)message{
-    
-    NSString *messageString = nil;
-    switch (message.contentType) {
-        case kJMSGContentTypeText:
-            messageString = ((JMSGTextContent *)message.content).text;
-            break;
-        case kJMSGContentTypeImage:{
-            messageString = @"【图片】";
-            JMSGImageContent *content = (JMSGImageContent *)message.content ;
-            NSLog(@"图片地址----%@",content.imageLink);
-            [(JMSGImageContent *)message.content thumbImageData:^(NSData *data, NSString *objectId, NSError *error) {
-                NSLog(@"获取图片缩略图：%@",error?@"失败":@"成功");
-                NSLog(@"data----%@---%@----%@",data,objectId,content.imageLink);
-                
-                self.message(data);
-                
-            }];
-        }
-            break;
-        case kJMSGContentTypeVoice:{
-            messageString = @"【语音】";
-            [(JMSGVoiceContent *)message.content voiceData:^(NSData *data, NSString *objectId, NSError *error) {
-                NSLog(@"获取语音文件：%@",error?@"失败":@"成功");
-            }];
-        }
+    ChatMessageModel *model = [ChatMessageModel initWithJMSGMessage:message];
+    switch (model.groupEventType) {
+        case GoroupRemoveGroupType:
             
-            break;
-        case kJMSGContentTypeVideo:{
-            messageString = @"【视频】";
-            [(JMSGVideoContent *)message.content videoThumbImageData:^(NSData *data, NSString *objectId, NSError *error) {
-                NSLog(@"获取视频封面缩略图：%@",error?@"失败":@"成功");
-            }];
-        }
-            break;
-        case kJMSGContentTypeCustom:
-            messageString = @"【自定义消息】";
-            break;
-        case kJMSGContentTypeEventNotification:
-            messageString = [((JMSGEventContent *)message.content) showEventNotification];
-            break;
-        case kJMSGContentTypeFile:
-            messageString = @"【文件】";
-            break;
-        case kJMSGContentTypeLocation:
-            messageString = @"【位置】";
-            break;
-        case kJMSGContentTypePrompt:
-            messageString = ((JMSGPromptContent *)message.content).promptText;
+           
             break;
             
-        default:
+	        default:
             break;
     }
-    NSLog(@"message---%@",message.content);
-    NSLog(@"messageString---%@",messageString);
-    NSLog(@"id----%@----name---%@",message.target,message.fromName);
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"IMReceiVeMessage" object:model];
+
 }
 #pragma mark - 用户登录状态变更
 - (void)onReceiveUserLoginStatusChangeEvent:(JMSGUserLoginStatusChangeEvent *)event {

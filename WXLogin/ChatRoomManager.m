@@ -33,7 +33,7 @@
             JMSGUser *user = (JMSGUser *)conversation.target;
            
             [JMSGConversation createSingleConversationWithUsername:user.username completionHandler:^(id resultObject, NSError *error) {
-                NSLog(@"resultObject--%@",resultObject);
+                NSLog(@"单聊resultObject--%@",resultObject);
                 if (error) {
                     self.creatRoomYES = NO;
                     complete(NO);
@@ -51,7 +51,24 @@
         }
             break;
         case 2:{
-            //群聊
+            //群组
+            JMSGGroup *group = (JMSGGroup *)conversation.target;
+            [JMSGConversation createGroupConversationWithGroupId:group.gid completionHandler:^(id resultObject, NSError *error) {
+                NSLog(@"群组resultObject--%@",resultObject);
+                if (error) {
+                    self.creatRoomYES = NO;
+                    complete(NO);
+                    return ;
+                }
+                JMSGConversation *JMSG =(JMSGConversation *)resultObject;
+                
+                self.JMSG = JMSG;
+                if (resultObject) {
+                    self.creatRoomYES = YES;
+                    self.sendManager.JMSG = JMSG;
+                    complete(YES);
+                }
+            }];
             
         }
             break;
@@ -75,9 +92,11 @@
             resultObject = (NSArray *)resultObject;
         
             
-            [resultObject enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                ChatMessageModel *messageModel =[self getChatMessageModel:obj];
-                [messageArray addObject:messageModel];
+            [resultObject enumerateObjectsUsingBlock:^(JMSGMessage*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.contentType <4) {
+                    ChatMessageModel *messageModel =[self getChatMessageModel:obj];
+                    [messageArray addObject:messageModel];
+                }
             }];
         }
 //        self.messageArray = messageArray;
@@ -95,10 +114,13 @@
     NSArray *array =  [[[self.JMSG messageArrayFromNewestWithOffset:offset limit:limt] reverseObjectEnumerator]allObjects];
     
     NSMutableArray *newMessageArray = [NSMutableArray array];
-    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [array enumerateObjectsUsingBlock:^(JMSGMessage *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        ChatMessageModel *messageModel =[self getChatMessageModel:obj];
-        [newMessageArray addObject:messageModel];
+        if (obj.contentType <4) {
+            ChatMessageModel *messageModel =[self getChatMessageModel:obj];
+            [newMessageArray addObject:messageModel];
+        }
+
     }];
     
 //    if (newMessageArray.count == 0&&offset == 0) {
@@ -123,7 +145,11 @@
 }
 
 -(NSString *)roomName{
-    
+    NSString *titile = self.JMSG.title;
+    if (titile.length == 0&&self.JMSG.conversationType ==kJMSGConversationTypeGroup ) {
+        JMSGGroup *group = (JMSGGroup *)self.JMSG.target;
+        titile = group.displayName;
+    }
     return self.JMSG.title;
 }
 @end

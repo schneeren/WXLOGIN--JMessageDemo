@@ -51,11 +51,44 @@
         [weakSelf.messageArray addObjectsFromArray:newMessagArray];
         [weakSelf.tableView reloadData];
     }];
-    
-    _manager.sendManager.receiveMessage = ^(ChatMessageModel *messageModel) {
+    //接收到聊天信息
+    _manager.sendManager.receiveChatMessage = ^(ChatMessageModel *messageModel) {
         [weakSelf.messageArray addObject:messageModel];
         [weakSelf.tableView reloadData];
     };
+    //接收到通知事件
+    _manager.sendManager.receiveEventMessage = ^(ChatMessageModel *messageModel) {
+        
+        [weakSelf ChatRoomEvent:messageModel.groupEventType];
+        
+    };
+}
+-(void)ChatRoomEvent:(GroupEventType )EventType{
+    switch (EventType) {
+        case GroupEventExitType:{
+//            [self.manager ]
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case GroupMembersChangeType:{
+            //群成员变更
+        }
+            break;
+        case GroupInfoChangeType:{
+            self.title = self.manager.roomName;
+        }
+            break;
+        case GroupDissolveType:{
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"通知" message:@"当前群组已解散" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            [alert addAction:action];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+        default:
+            break;
+    }
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.messageArray.count;

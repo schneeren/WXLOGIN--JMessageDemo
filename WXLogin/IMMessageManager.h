@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 @class ChatMessageModel;
 @class JMSGConversation;
-
 //@protocol IMMessageManagerDelegate <NSObject>
 //
 //
@@ -19,8 +18,12 @@
 @interface IMMessageManager : NSObject
 
 @property (nonatomic, weak) JMSGConversation *JMSG;
-
+//所有信息
 @property (nonatomic, copy) void (^receiveMessage)(ChatMessageModel *messageModel);
+//聊天
+@property (nonatomic, copy) void (^receiveChatMessage)(ChatMessageModel *messageModel);
+//通知
+@property (nonatomic, copy) void (^receiveEventMessage)(ChatMessageModel *messageModel);
 
 -(ChatMessageModel *)sendTextMessage:(NSString *)message;
 

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "440A6B6C0F38E958008AE6EDCBC1A23C"
+               BlueprintIdentifier = "EBBE9A3F4AFEFAC87F29DA298CD874E6"
                BuildableName = "libPods-WXLogin.a"
                BlueprintName = "Pods-WXLogin"
                ReferencedContainer = "container:Pods.xcodeproj">

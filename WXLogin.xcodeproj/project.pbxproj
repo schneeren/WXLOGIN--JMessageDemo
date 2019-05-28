@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5C0C0A3ACCEA52672DD9E4E2 /* libPods-WXLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F918BB586ACBBF6B393B8D /* libPods-WXLogin.a */; };
 		97302E852297BB98003F1261 /* ListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97302E842297BB98003F1261 /* ListVC.m */; };
+		9754E102229CC6C200952A81 /* EmojiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9754E101229CC6C200952A81 /* EmojiView.m */; };
+		9754E105229CC9FE00952A81 /* EmojiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9754E104229CC9FE00952A81 /* EmojiManager.m */; };
+		9754E107229CCBD400952A81 /* face.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9754E106229CCBD400952A81 /* face.txt */; };
+		9754E109229CDC7C00952A81 /* emoji.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9754E108229CDC7C00952A81 /* emoji.plist */; };
 		977BF3E222968BD100E7F1B3 /* IMMessageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 977BF3E122968BD100E7F1B3 /* IMMessageManager.m */; };
 		9791A84F2295243400939AB9 /* ChatRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9791A84E2295243400939AB9 /* ChatRoomVC.m */; };
 		9791A8522295252E00939AB9 /* ChatMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9791A8512295252E00939AB9 /* ChatMessageModel.m */; };
@@ -47,6 +51,12 @@
 		95ECD2F664871BA38E5557D4 /* Pods-WXLogin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXLogin.release.xcconfig"; path = "Target Support Files/Pods-WXLogin/Pods-WXLogin.release.xcconfig"; sourceTree = "<group>"; };
 		97302E832297BB98003F1261 /* ListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListVC.h; sourceTree = "<group>"; };
 		97302E842297BB98003F1261 /* ListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListVC.m; sourceTree = "<group>"; };
+		9754E100229CC6C200952A81 /* EmojiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmojiView.h; sourceTree = "<group>"; };
+		9754E101229CC6C200952A81 /* EmojiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmojiView.m; sourceTree = "<group>"; };
+		9754E103229CC9FE00952A81 /* EmojiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmojiManager.h; sourceTree = "<group>"; };
+		9754E104229CC9FE00952A81 /* EmojiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmojiManager.m; sourceTree = "<group>"; };
+		9754E106229CCBD400952A81 /* face.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = face.txt; sourceTree = "<group>"; };
+		9754E108229CDC7C00952A81 /* emoji.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emoji.plist; sourceTree = "<group>"; };
 		977BF3E022968BD100E7F1B3 /* IMMessageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMMessageManager.h; sourceTree = "<group>"; };
 		977BF3E122968BD100E7F1B3 /* IMMessageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMMessageManager.m; sourceTree = "<group>"; };
 		9791A84D2295243400939AB9 /* ChatRoomVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatRoomVC.h; sourceTree = "<group>"; };
@@ -173,7 +183,13 @@
 				9791A8512295252E00939AB9 /* ChatMessageModel.m */,
 				9791A84D2295243400939AB9 /* ChatRoomVC.h */,
 				9791A84E2295243400939AB9 /* ChatRoomVC.m */,
+				9754E100229CC6C200952A81 /* EmojiView.h */,
+				9754E101229CC6C200952A81 /* EmojiView.m */,
+				9754E103229CC9FE00952A81 /* EmojiManager.h */,
+				9754E104229CC9FE00952A81 /* EmojiManager.m */,
 				97A6660622923D1400C07E1B /* Main.storyboard */,
+				9754E108229CDC7C00952A81 /* emoji.plist */,
+				9754E106229CCBD400952A81 /* face.txt */,
 				97A6660922923D1600C07E1B /* Assets.xcassets */,
 				97A6660B22923D1600C07E1B /* LaunchScreen.storyboard */,
 				97A6660E22923D1600C07E1B /* Info.plist */,
@@ -272,8 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				97A6660D22923D1600C07E1B /* LaunchScreen.storyboard in Resources */,
+				9754E107229CCBD400952A81 /* face.txt in Resources */,
 				97A6660A22923D1600C07E1B /* Assets.xcassets in Resources */,
 				97A6660822923D1400C07E1B /* Main.storyboard in Resources */,
+				9754E109229CDC7C00952A81 /* emoji.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9754E105229CC9FE00952A81 /* EmojiManager.m in Sources */,
 				977BF3E222968BD100E7F1B3 /* IMMessageManager.m in Sources */,
 				97A6660522923D1400C07E1B /* ViewController.m in Sources */,
 				97AB47482293CFE1004BA119 /* JMSGFocusIMDelete.m in Sources */,
@@ -316,6 +335,7 @@
 				97A6660222923D1400C07E1B /* AppDelegate.m in Sources */,
 				9791A8552295253D00939AB9 /* ChatRoomManager.m in Sources */,
 				97AB47452293CBC1004BA119 /* CCHttpTool.m in Sources */,
+				9754E102229CC6C200952A81 /* EmojiView.m in Sources */,
 				9791A8522295252E00939AB9 /* ChatMessageModel.m in Sources */,
 				97302E852297BB98003F1261 /* ListVC.m in Sources */,
 				9791A84F2295243400939AB9 /* ChatRoomVC.m in Sources */,

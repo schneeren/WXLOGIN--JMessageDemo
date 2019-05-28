@@ -16,9 +16,10 @@ PODS:
     - AFNetworking/NSURLSession
   - JCore (1.2.6)
   - JMessage (3.8.1):
-    - JCore (~> 1.0)
+    - JCore (< 3.0.0, >= 1.0.0)
   - JPush (3.1.2):
     - JCore (~> 1.2.6)
+  - Masonry (1.1.0)
   - WechatOpenSDK (1.8.4)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - JMessage
   - JPush
+  - Masonry
   - WechatOpenSDK
   - YYKit
 
@@ -37,17 +39,19 @@ SPEC REPOS:
     - JCore
     - JMessage
     - JPush
+    - Masonry
     - WechatOpenSDK
     - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   JCore: cae516dd2bf1a73b578ce6e1065abd49e709e0f7
-  JMessage: 3385377ab5c45f8f5e395e69ed25d18434a02988
+  JMessage: 2f1612060a3dfe362cf642898553ad8e49b5919f
   JPush: d0cead70ba223a6a3b52749899ebda830dfbc49a
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   WechatOpenSDK: 9b721089507c895d05f997408c30bb6e6f5f9b60
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 0c6deea58e643515a93b5ca121d738291bc46b54
+PODFILE CHECKSUM: bc0b21a04a6fafac2fe231a152433669e63da36b
 
 COCOAPODS: 1.6.1

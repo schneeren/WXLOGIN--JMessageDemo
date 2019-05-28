@@ -37,8 +37,49 @@
     NSNumber * unRead =  [JMSGConversation getAllUnreadCount];
     NSLog(@"未读消息数-----%ld",(long)unRead.integerValue);
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:@"IMReceiVeMessage" object:nil];
-}
+    NSDictionary *string = @{@"11":@"33"};
 
+
+    [self change:string];
+    NSLog(@"%@",string);
+    //txt转为plist
+    NSString *file = [[NSBundle mainBundle]pathForResource:@"face" ofType:@"txt"];
+    NSString *txt = [[NSString alloc]initWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+
+    NSLog(@"txt---%@",txt);
+    NSArray *array = [txt componentsSeparatedByString:@"\n"];
+    NSMutableArray *plist = [NSMutableArray array];
+    for (NSString *string in array) {
+        NSCharacterSet *delimiters = [NSCharacterSet characterSetWithCharactersInString:@"[]"];
+        NSArray *splitString = [string componentsSeparatedByCharactersInSet:delimiters];
+
+        NSString *key = [NSString stringWithFormat:@"[%@]",splitString[1]];
+
+
+        NSRange range = [string rangeOfString:@"face_qq_"];
+        NSString *str = [string substringFromIndex:(range.location)];
+
+        str = [str stringByReplacingOccurrencesOfString:@");" withString:@""];
+        NSDictionary *dic = @{
+                              @"name":key,
+                              @"image":str
+                              };
+        [plist addObject:dic];
+    }
+    NSLog(@"plist----%@",plist);
+
+    [plist writeToFile:@"/Users/renshen/Desktop/WeissRen/emoji.plist" atomically:YES];
+    
+    
+}
+-(void)change:(NSDictionary *)str{
+    str = @{@"11":@"22"};
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
 - (IBAction)WXLogin:(id)sender {
     
     if (![WXApi isWXAppInstalled]) {

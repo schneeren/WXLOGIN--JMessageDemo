@@ -9,6 +9,7 @@ target 'WXLogin' do
   pod "JMessage"
   pod "JPush"
   pod "YYKit"
+  pod "Masonry"
   end
 
 

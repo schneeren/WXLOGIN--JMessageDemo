@@ -8,7 +8,7 @@
 
 #import "ListVC.h"
 #import <JMessage/JMessage.h>
-
+#import "EmojiView.h"
 #define IMReceiVeMessageNotifacation @"IMReceiVeMessage"
 
 @interface ListVC ()<UITableViewDelegate, UITableViewDataSource>
@@ -27,6 +27,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
 -(void)reloadList{
     [_tableView reloadData];
 }

@@ -10,13 +10,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WXLogin/ViewController.m"
-            timestampString = "580705314.602896"
+            timestampString = "580749370.053828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "-getCode:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__26-[ViewController getCode:]_block_invoke_4"
+                  moduleName = "WXLogin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/renshen/Desktop/JGIM/WXLOGIN--JMessageDemo/WXLogin/ViewController.m"
+                  timestampString = "580747403.894504"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "131">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__26-[ViewController getCode:]_block_invoke_5"
+                  moduleName = "WXLogin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/renshen/Desktop/JGIM/WXLOGIN--JMessageDemo/WXLogin/ViewController.m"
+                  timestampString = "580747403.896345"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "138"
+                  endingLineNumber = "138"
+                  offsetFromSymbolStart = "82">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,6 +96,22 @@
             startingLineNumber = "45"
             endingLineNumber = "45"
             landmarkName = "-groupEventType"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WXLogin/EmojiView.m"
+            timestampString = "580749370.05542"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-setUIWithFrame:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

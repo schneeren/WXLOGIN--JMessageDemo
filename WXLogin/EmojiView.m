@@ -10,83 +10,118 @@
 #import "EmojiManager.h"
 #import <Masonry.h>
 #define cellID @"emojiCell"
+
+#define spacing 0
+#define baseTag 1312
 @interface EmojiView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong)EmojiManager *manager;
+@property (nonatomic) NSInteger numRowOfLine;
+@property (nonatomic) NSInteger sectionNum;
 @end
 
 @implementation EmojiView
--(void)awakeFromNib{
-    
-    [super awakeFromNib];
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
-    NSInteger numRowOfLine = screenW>=375?9:7;
-    
-    
-    CGFloat W = ([UIScreen mainScreen].bounds.size.width-28)/numRowOfLine;
-    CGFloat H = (240-24)/3;
-    layout.itemSize = CGSizeMake(W, H);
-    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
-    _collectionView.showsVerticalScrollIndicator = NO;
-    _collectionView.showsHorizontalScrollIndicator = NO;
-    _collectionView.delegate = self;
-    _collectionView.dataSource = self;
-    _manager = [[EmojiManager alloc]init];
-}
+
 -(instancetype)initWithFrame:(CGRect)frame  {
     self = [super initWithFrame:frame];
     if (self) {
         [self setUIWithFrame:frame];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }
 -(void)setUIWithFrame:(CGRect )frame{
-    UICollectionView *collectionView = [[UICollectionView alloc]init];
-    [self addSubview:collectionView];
-    [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(UIEdgeInsetsMake(12, 14, 12, 14));
-    }];
+    CGFloat W = frame.size.width;
+    CGFloat H = frame.size.height;
+    _manager = [[EmojiManager alloc]init];
+    //计算每行多少个表情
+    _numRowOfLine = [UIScreen mainScreen].bounds.size.width>=375?9:7;
+    
+    //计算有多少页
+    NSInteger num = _manager.emojiDataArray.count/(_numRowOfLine*3);
+    NSInteger remainder = _manager.emojiDataArray.count%(_numRowOfLine*3);
+    _sectionNum = remainder>0?num+1:num;
+    
+    //计算每个row的宽高
+    CGFloat itemW = (W-(_numRowOfLine-1)*spacing)/(CGFloat )_numRowOfLine;
+    CGFloat itemH = (H - 2*spacing)/3;
+    
+    //初始化scrollview
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, W, H)];
+    scrollView.contentSize = CGSizeMake(W*_sectionNum, H);
+    scrollView.pagingEnabled = YES;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.bounces = NO;
+
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    CGFloat screenW = [UIScreen mainScreen].bounds.size.width;
-    NSInteger numRowOfLine = screenW>=375?9:7;
-    
-    
-    CGFloat W = (frame.size.width-28)/numRowOfLine;
-    CGFloat H = (frame.size.height-24)/3;
-    layout.itemSize = CGSizeMake(W, H);
+    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    layout.itemSize = CGSizeMake(itemW, itemH);
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    collectionView.collectionViewLayout = layout;
-    collectionView.showsVerticalScrollIndicator = NO;
-    collectionView.showsHorizontalScrollIndicator = NO;
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-    _manager = [[EmojiManager alloc]init];
+    for (int i=0; i<_sectionNum; i++) {
+        UIView *view =[[UIView alloc]initWithFrame:CGRectMake(W*i, 0, W, H)];
+        [scrollView addSubview:view];
+        UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, W, H) collectionViewLayout:layout];
+        collectionView.backgroundColor = [UIColor clearColor];
+        collectionView.tag = baseTag +i;
+        [view addSubview:collectionView];
+        collectionView.collectionViewLayout = layout;
+        collectionView.showsVerticalScrollIndicator = NO;
+        collectionView.showsHorizontalScrollIndicator = NO;
+        collectionView.delegate = self;
+        collectionView.dataSource = self;
+        collectionView.pagingEnabled = YES;
+        [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellID];
+    }
+    [self addSubview:scrollView];
     
-    [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:cellID];
+    
+    
+    
+    
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return _dataArray.count;
+    return _numRowOfLine*3;
 }
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return spacing;
+}
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
+    return spacing;
 }
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    if (cell) {
-        UIImageView *imageView = [[UIImageView alloc]init];
-//        ce
+    NSInteger tag = 12312312;
+    UIImageView *imageView = [cell.contentView viewWithTag:tag];
+    if (!imageView) {
+        imageView = [[UIImageView alloc]init];
+        imageView.tag = tag;
+        [cell.contentView addSubview:imageView];
+        imageView.frame = CGRectMake(0, 0, 24, 24);
+        imageView.center= cell.contentView.center;
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
     }
-    
-    
+    NSInteger index = (_numRowOfLine*3)*(collectionView.tag-baseTag)+indexPath.row;
+    if (index<_manager.emojiDataArray.count) {
+        NSDictionary *data = _manager.emojiDataArray[index];
+        NSString *imageName = data[@"image"];
+        imageView.image = [UIImage imageNamed:imageName];
+    }else{
+        imageView.image = nil;
+        
+    }
+
+
     return cell;
 }
 /*

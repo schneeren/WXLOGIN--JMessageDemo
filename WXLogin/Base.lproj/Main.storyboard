@@ -89,6 +89,14 @@
                                     <outlet property="delegate" destination="Byj-eH-ke7" id="UjM-I3-ra2"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOg-iW-ElG">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="emojiShow:" destination="Byj-eH-ke7" eventType="touchUpInside" id="dJU-BM-Zta"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -104,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gTl-Eq-VNj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168" y="22"/>
+            <point key="canvasLocation" x="166.66666666666669" y="21.428571428571427"/>
         </scene>
         <!--Chat RoomVC-->
         <scene sceneID="t33-hP-7Fz">
@@ -179,42 +187,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nff-x4-asP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="ojg-aE-K5k" customClass="EmojiView">
-                    <rect key="frame" x="0.0" y="0.0" width="418" height="240"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UV7-x8-cLW">
-                            <rect key="frame" x="14" y="12" width="390" height="216"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ocq-1X-CKu">
-                                <size key="itemSize" width="50" height="50"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                            <cells>
-                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1yx-TH-jBT">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </view>
-                                </collectionViewCell>
-                            </cells>
-                        </collectionView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstItem="UV7-x8-cLW" firstAttribute="centerX" secondItem="ojg-aE-K5k" secondAttribute="centerX" id="BZe-D5-aUB"/>
-                        <constraint firstItem="UV7-x8-cLW" firstAttribute="centerY" secondItem="ojg-aE-K5k" secondAttribute="centerY" id="dj2-oa-2Rk"/>
-                        <constraint firstItem="UV7-x8-cLW" firstAttribute="top" secondItem="ojg-aE-K5k" secondAttribute="top" constant="12" id="dtc-Cb-44U"/>
-                        <constraint firstItem="UV7-x8-cLW" firstAttribute="leading" secondItem="ojg-aE-K5k" secondAttribute="leading" constant="14" id="eTS-27-Wg2"/>
-                    </constraints>
-                    <connections>
-                        <outlet property="collectionView" destination="UV7-x8-cLW" id="lrS-Tv-VEl"/>
-                    </connections>
-                </view>
             </objects>
             <point key="canvasLocation" x="967" y="1"/>
         </scene>

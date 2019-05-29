@@ -14,6 +14,7 @@
 #import "JMSGFocusIMDelete.h"
 #import "ChatRoomVC.h"
 #import "ListVC.h"
+#import "EmojiView.h"
 @interface ViewController ()<WXApiDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 //单聊
@@ -68,7 +69,7 @@
     }
     NSLog(@"plist----%@",plist);
 
-    [plist writeToFile:@"/Users/renshen/Desktop/WeissRen/emoji.plist" atomically:YES];
+    [plist writeToFile:@"/Users/renshen/Desktop/CC/emoji.plist" atomically:YES];
     
     
 }
@@ -231,6 +232,10 @@
 }
 //群组
 - (IBAction)gotoChat:(id)sender {
+    EmojiView *emoji = [[EmojiView alloc]initWithFrame:CGRectMake(12, 100, [UIScreen mainScreen].bounds.size.width-24, 240)];
+    
+    [self.view addSubview:emoji];
+    return;
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle ]];
     ListVC *vc = [sb instantiateViewControllerWithIdentifier:@"ListVC"];
     vc.listArray = [_messageRroupArray mutableCopy];
